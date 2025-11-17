@@ -1,6 +1,6 @@
 let workers = [
   {
-    id: 1,
+    id: Date.now(),
     name: "Rachad",
     role: "Administrateur système",
     email: "test@mail.com",
@@ -9,7 +9,7 @@ let workers = [
     experiences: ["exp1", "exp2"]
   },
   {
-    id: 2,
+    id: Date.now(),
     name: "Rachad",
     role: "Administrateur système",
     email: "test@mail.com",
@@ -83,6 +83,7 @@ addExp.addEventListener("click", () => {
     exp.querySelector(".removeExp").onclick = () => exp.remove();
 });
 
+/* affiche le staf */
 function affichestaff() {
     const staffList = document.getElementById("staffList");
     staffList.innerHTML = "";
