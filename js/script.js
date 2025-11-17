@@ -69,42 +69,34 @@ const addExp = document.getElementById("addExperience");
 
 /*Ajouter l'input d'experience*/
 addExp.addEventListener("click", () => {
-    const container = document.getElementById("experiencesContainer");
+  const container = document.getElementById("experiencesContainer");
 
-    const div = document.createElement("div");
-    div.className = "experience-item border p-3 rounded-lg bg-gray-50 mt-2";
+  const div = document.createElement("div");
+  div.className = "experience-item border p-3 rounded-lg bg-gray-50 mt-2";
 
-    div.innerHTML = `
-        <div class="mb-2">
-            <label class="block text-sm font-semibold mb-1">Rôle</label>
-            <input type="text"
-                   class="w-full border p-2 rounded roleInput"
-                   placeholder="Ex : Technicien, Responsable..." />
+  div.innerHTML = `
+        <div id="experienceContainer">
+    <div class="expItem flex gap-2 mb-2">
+        <div>
+            <label>Rôle :</label>
+            <input type="text" class="roleExp border p-2 rounded" placeholder="Ex : Développeur">
         </div>
-
-        <div class="items-center gap-4">
-
-            <div>
-                <label class="block text-sm font-semibold mb-1">From</label>
-                <input type="date"
-                       class="w-full border p-2 rounded dateFrom" />
-            </div>
-
-            <div >
-                <label class="block text-sm font-semibold mb-1">To</label>
-                <input type="date"
-                       class="w-full border p-2 rounded dateTo" />
-            </div>
-
-            <button class="bg-red-600 text-white px-3 py-2 h-[42px] rounded removeExp self-end">
-                X
-            </button>
-
+        <div>
+            <label>De :</label>
+            <input type="date" class="fromExp border p-2 rounded">
         </div>
+        <div>
+            <label>À :</label>
+            <input type="date" class="toExp border p-2 rounded">
+        </div>
+        <button class="bg-red-600 text-white px-2 rounded removeExp">X</button>
+    </div>
+</div>
+
     `;
-    
-    container.appendChild(div);
-    div.querySelector(".removeExp").onclick = () => div.remove();
+
+  container.appendChild(div);
+  div.querySelector(".removeExp").onclick = () => div.remove();
 });
 
 
@@ -139,16 +131,22 @@ document.getElementById("Enregistrer").onclick = function (e) {
   const telephone = document.getElementById("tel");
   const photo = document.getElementById("photoInput");
 
+  // ----------------------------
+  // VALIDATION DE BASE
+  // ----------------------------
   if (nom.value.trim() === "") {
     return alert("Le nom est obligatoire !");
   }
   if (!email.value.trim().includes("@")) {
     return alert("Email invalide !");
   }
-  if (telephone.length < 8 || isNaN(telephone.value)) {
+  if (telephone.value.length < 8 || isNaN(telephone.value)) {
     return alert("Téléphone invalide !");
   }
 
+  // ----------------------------
+  // CRÉATION DE L’OBJET WORKER
+  // ----------------------------
   const newWorker = {
     id: Date.now(),
     name: nom.value,
@@ -156,22 +154,48 @@ document.getElementById("Enregistrer").onclick = function (e) {
     email: email.value,
     phone: telephone.value,
     photo: photo.value,
-    experiences: []  // tu l’activeras quand tu voudras
+    experiences: []
   };
 
+  // ----------------------------
+  // RÉCUPÉRATION DES EXPÉRIENCES
+  // ----------------------------
+  const expItems = document.querySelectorAll(".expItem");
 
+  expItems.forEach(item => {
+    const roleExp = item.querySelector(".roleExp").value.trim();
+    const fromExp = item.querySelector(".fromExp");
+    const toExp = item.querySelector(".toExp");
+
+    if (roleExp === "" || fromExp === "" || toExp === "") {
+      return alert("Tous les champs d'expérience doivent être remplis !");
+    }
+
+    if (fromExp.value > toExp.value) {
+      return alert("La date début ne peut pas être supérieure à la date fin !");
+    }
+
+    newWorker.experiences.push({
+      role: roleExp,
+      from: fromExp,
+      to: toExp
+    });
+  });
+
+  // ----------------------------
+  // AJOUT DANS workers
+  // ----------------------------
   workers.push(newWorker);
-
-
 
   affichestaff();
 
-
+  // ----------------------------
+  // RESET FORM
+  // ----------------------------
   nom.value = "";
   email.value = "";
   telephone.value = "";
   photo.value = "";
   previewImg.src = "";
   modalajouter.classList.add("hidden");
-
 };
