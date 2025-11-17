@@ -6,7 +6,8 @@ let workers = [
     email: "test@mail.com",
     phone: "+212...",
     photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
-    experiences: ["exp1", "exp2"]
+    experiences: ["exp1", "exp2"],
+    assigned: false
   },
   {
     id: Date.now(),
@@ -15,7 +16,8 @@ let workers = [
     email: "test@mail.com",
     phone: "+212...",
     photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
-    experiences: ["exp1", "exp2"]
+    experiences: ["exp1", "exp2"],
+    assigned: false
   },
   {
     id: Date.now(),
@@ -24,7 +26,8 @@ let workers = [
     email: "test@mail.com",
     phone: "+212...",
     photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
-    experiences: ["exp1", "exp2"]
+    experiences: ["exp1", "exp2"],
+    assigned: false
   },
   {
     id: Date.now(),
@@ -33,7 +36,8 @@ let workers = [
     email: "test@mail.com",
     phone: "+212...",
     photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
-    experiences: ["exp1", "exp2"]
+    experiences: ["exp1", "exp2"],
+    assigned: false
   }
 ];
 
@@ -105,7 +109,7 @@ function affichestaff() {
   const staffList = document.getElementById("staffList");
   staffList.innerHTML = "";
 
-  workers.forEach(worker => {
+  workers.filter(worker => worker.assigned === false).forEach(worker => {
     const div = document.createElement("div");
     div.className = "flex items-center gap-3 p-2 bg-gray-100 rounded-lg shadow";
 
@@ -240,7 +244,10 @@ function openAssignModal(zone) {
                 </div>
             `;
 
-            item.onclick = () => assignToZone(worker, zone);
+            item.onclick = () =>{
+              assignToZone(worker, zone);
+              console.log(workers.pop((w) => w.name !== worker.name));
+            } 
             list.appendChild(item);
         }
     });
