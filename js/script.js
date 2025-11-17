@@ -158,7 +158,8 @@ document.getElementById("Enregistrer").onclick = function (e) {
     email: email.value,
     phone: telephone.value,
     photo: photo.value,
-    experiences: []
+    experiences: [],
+    assigned: false
   };
 
 
@@ -231,7 +232,7 @@ function openAssignModal(zone) {
 
     const allowedRoles = accessRules[zone];
 
-    workers.forEach(worker => {
+    workers.filter(worker => worker.assigned === false).forEach(worker => {
         if (allowedRoles.includes(worker.role.toLowerCase())) {
             const item = document.createElement("div");
             item.className = "p-3 bg-gray-100 rounded flex items-center gap-3 cursor-pointer hover:bg-gray-200";
@@ -254,7 +255,11 @@ function openAssignModal(zone) {
 }
 function assignToZone(worker, zone) {
     const zoneDiv = document.getElementById("zone-" + zone);
+    // 1. Marquer comme assigné
+    worker.assigned = true;
 
+    // 2. Mettre à jour liste unassigned
+    affichestaff();
     const card = document.createElement("div");
     card.className = "p-1 bg-white shadow rounded flex items-center gap-2 mt-2 w-fit";
 
@@ -264,7 +269,11 @@ function assignToZone(worker, zone) {
         <button class="bg-red-600 mt-3 text-white px-2 rounded remworker">X</button>
     `;
     let remworker =card.querySelector(".remworker");
-    remworker.onclick = () => card.remove();
+    remworker.onclick = () =>{
+        worker.assigned = false;
+        affichestaff();
+        card.remove();
+    } 
     zoneDiv.appendChild(card);
 
     // Fermer le modal
