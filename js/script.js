@@ -1,8 +1,8 @@
 let workers = [
   {
     id: Date.now(),
-    name: "Rachad",
-    role: "Agent de sécurité",
+    name: "hamza",
+    role: "agent_securite",
     email: "test@mail.com",
     phone: "+212...",
     photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
@@ -10,8 +10,8 @@ let workers = [
   },
   {
     id: Date.now(),
-    name: "Rachad",
-    role: "Technicien IT",
+    name: "Ahmed",
+    role: "Technicien",
     email: "test@mail.com",
     phone: "+212...",
     photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
@@ -19,8 +19,8 @@ let workers = [
   },
   {
     id: Date.now(),
-    name: "Rachad",
-    role: "Réceptionnistes",
+    name: "karim",
+    role: "receptionniste",
     email: "test@mail.com",
     phone: "+212...",
     photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
@@ -76,20 +76,20 @@ addExp.addEventListener("click", () => {
 
   div.innerHTML = `
         <div id="experienceContainer">
-    <div class="expItem flex gap-2 mb-2">
+    <div class="expItem gap-2 mb-2">
         <div>
             <label>Rôle :</label>
             <input type="text" class="roleExp border p-2 rounded" placeholder="Ex : Développeur">
         </div>
-        <div>
+        <div class="mt-3">
             <label>De :</label>
             <input type="date" class="fromExp border p-2 rounded">
         </div>
-        <div>
+        <div class="mt-3">
             <label>À :</label>
             <input type="date" class="toExp border p-2 rounded">
         </div>
-        <button class="bg-red-600 text-white px-2 rounded removeExp">X</button>
+        <button class="bg-red-600 mt-3 text-white px-2 rounded removeExp">X</button>
     </div>
 </div>
 
@@ -157,9 +157,7 @@ document.getElementById("Enregistrer").onclick = function (e) {
     experiences: []
   };
 
-  // ----------------------------
-  // RÉCUPÉRATION DES EXPÉRIENCES
-  // ----------------------------
+
   const expItems = document.querySelectorAll(".expItem");
 
   expItems.forEach(item => {
@@ -199,4 +197,65 @@ document.getElementById("Enregistrer").onclick = function (e) {
   previewImg.src = "";
   modalajouter.classList.add("hidden");
 };
+/* ajoute dans une zone */
+let btn_conference = document.getElementById("btn-conference");
+let btn_reception = document.getElementById("btn-reception");
+let btn_serveurs=document.getElementById("btn-serveurs");
+let btn_securite=document.getElementById("btn-securite");
+let btn_personnel=document.getElementById("btn-personnel");
+let btn_archives=document.getElementById("btn-archives")
+btn_conference.onclick = () => openAssignModal("conference");
+btn_reception.onclick = () => openAssignModal("reception");
+btn_serveurs.onclick = () => openAssignModal("serveurs");
+btn_securite.onclick = () => openAssignModal("securite");
+btn_personnel.onclick = () => openAssignModal("personnel");
+btn_archives.onclick = () => openAssignModal("archives");
+const accessRules = {
+    conference: ["manager", "autre"],
+    reception: ["receptionniste", "manager"],
+    serveurs: ["technicien", "manager"],
+    securite: ["agent_securite", "manager"],
+    personnel: ["manager", "autre"],
+    archives: ["manager", "technicien", "agent_securite", "autre"] // nettoyage interdit
+};
+function openAssignModal(zone) {
+    const modal = document.getElementById("assignModal");
+    const list = document.getElementById("assignList");
+    modal.classList.remove("hidden");
+
+    list.innerHTML = ""; // reset l'affichage
+
+    const allowedRoles = accessRules[zone];
+
+    workers.forEach(worker => {
+        if (allowedRoles.includes(worker.role.toLowerCase())) {
+            const item = document.createElement("div");
+            item.className = "p-3 bg-gray-100 rounded flex items-center gap-3 cursor-pointer hover:bg-gray-200";
+
+            item.innerHTML = `
+                <img src="${worker.photo}" class="w-10 h-10 rounded-full object-cover">
+                <p>${worker.name}</p>
+            `;
+
+            item.onclick = () => assignToZone(worker, zone);
+            list.appendChild(item);
+        }
+    });
+}
+function assignToZone(worker, zone) {
+    const zoneDiv = document.getElementById("zone-" + zone);
+
+    const card = document.createElement("div");
+    card.className = "p-1 bg-white shadow rounded flex items-center gap-2 mt-2 w-fit";
+
+    card.innerHTML = `
+        <img src="${worker.photo}" class="w-8 h-8 rounded-full object-cover">
+        <span class="text-sm">${worker.name}</span>
+    `;
+
+    zoneDiv.appendChild(card);
+
+    // Fermer le modal
+    document.getElementById("assignModal").classList.add("hidden");
+}
 
