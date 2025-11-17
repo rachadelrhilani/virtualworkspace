@@ -1,3 +1,41 @@
+let workers = [
+  {
+    id: 1,
+    name: "Rachad",
+    role: "Administrateur système",
+    email: "test@mail.com",
+    phone: "+212...",
+    photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
+    experiences: ["exp1", "exp2"]
+  },
+  {
+    id: 2,
+    name: "Rachad",
+    role: "Administrateur système",
+    email: "test@mail.com",
+    phone: "+212...",
+    photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
+    experiences: ["exp1", "exp2"]
+  },
+  {
+    id: 3,
+    name: "Rachad",
+    role: "Administrateur système",
+    email: "test@mail.com",
+    phone: "+212...",
+    photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
+    experiences: ["exp1", "exp2"]
+  },
+  {
+    id: 3,
+    name: "Rachad",
+    role: "Administrateur système",
+    email: "test@mail.com",
+    phone: "+212...",
+    photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
+    experiences: ["exp1", "exp2"]
+  }
+];
 
 /*Affiche le modal*/
 const closeModal = document.getElementById("closeModal");
@@ -18,10 +56,10 @@ modalajouter.onclick = (e) => {
 
 /*Affiche le photo*/
 const photoInput = document.getElementById("photoInput");
-const previewImg = document.getElementById("previewImg");
+const img = document.getElementById("previewImg");
 
 photoInput.addEventListener("input", () => {
-    previewImg.src = photoInput.value || "404";
+    img.src = photoInput.value;
 });
 
 /*Affiche le photo*/
@@ -32,9 +70,11 @@ const addExp = document.getElementById("addExperience");
 /*Ajouter l'input d'experience*/
 addExp.addEventListener("click", () => {
     const exp = document.createElement("div");
-    exp.className = "flex gap-2";
+    exp.className = "gap-2";
 
     exp.innerHTML = `
+        <input class="flex-1 border p-2 rounded" id="exp" placeholder="Ex : 2 ans chez X">
+        <input class="flex-1 border p-2 rounded" id="exp" placeholder="Ex : 2 ans chez X">
         <input class="flex-1 border p-2 rounded" id="exp" placeholder="Ex : 2 ans chez X">
         <button class="bg-red-600 text-white px-2 rounded removeExp">X</button>
       `;
