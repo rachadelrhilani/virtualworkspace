@@ -69,23 +69,44 @@ const addExp = document.getElementById("addExperience");
 
 /*Ajouter l'input d'experience*/
 addExp.addEventListener("click", () => {
-  const exp = document.createElement("div");
-  exp.className = "gap-2";
+    const container = document.getElementById("experiencesContainer");
 
-  exp.innerHTML = `
-    <input type="text" class="flex-1 border p-2 rounded roleInput"
-           placeholder="Rôle : Technicien, Responsable..." />
+    const div = document.createElement("div");
+    div.className = "experience-item border p-3 rounded-lg bg-gray-50 mt-2";
 
-    <input type="date" class="w-32 border p-2 rounded dateFrom" />
+    div.innerHTML = `
+        <div class="mb-2">
+            <label class="block text-sm font-semibold mb-1">Rôle</label>
+            <input type="text"
+                   class="w-full border p-2 rounded roleInput"
+                   placeholder="Ex : Technicien, Responsable..." />
+        </div>
 
-    <input type="date" class="w-32 border p-2 rounded dateTo" />
+        <div class="items-center gap-4">
 
-    <button class="bg-red-600 text-white px-2 py-1 rounded removeExp">X</button>
-      `;
+            <div>
+                <label class="block text-sm font-semibold mb-1">From</label>
+                <input type="date"
+                       class="w-full border p-2 rounded dateFrom" />
+            </div>
 
-  container.appendChild(exp);
-  exp.querySelector(".removeExp").onclick = () => exp.remove();
+            <div >
+                <label class="block text-sm font-semibold mb-1">To</label>
+                <input type="date"
+                       class="w-full border p-2 rounded dateTo" />
+            </div>
+
+            <button class="bg-red-600 text-white px-3 py-2 h-[42px] rounded removeExp self-end">
+                X
+            </button>
+
+        </div>
+    `;
+    
+    container.appendChild(div);
+    div.querySelector(".removeExp").onclick = () => div.remove();
 });
+
 
 /* affiche le staf */
 function affichestaff() {
