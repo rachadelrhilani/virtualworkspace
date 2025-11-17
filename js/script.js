@@ -234,7 +234,10 @@ function openAssignModal(zone) {
 
             item.innerHTML = `
                 <img src="${worker.photo}" class="w-10 h-10 rounded-full object-cover">
+                <div>
                 <p>${worker.name}</p>
+                <p class="text-gray-400 text-sm">${worker.role}</p>
+                </div>
             `;
 
             item.onclick = () => assignToZone(worker, zone);
@@ -251,8 +254,10 @@ function assignToZone(worker, zone) {
     card.innerHTML = `
         <img src="${worker.photo}" class="w-8 h-8 rounded-full object-cover">
         <span class="text-sm">${worker.name}</span>
+        <button class="bg-red-600 mt-3 text-white px-2 rounded remworker">X</button>
     `;
-
+    let remworker =card.querySelector(".remworker");
+    remworker.onclick = () => card.remove();
     zoneDiv.appendChild(card);
 
     // Fermer le modal
