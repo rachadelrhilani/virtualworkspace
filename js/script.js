@@ -199,3 +199,4 @@ document.getElementById("Enregistrer").onclick = function (e) {
   previewImg.src = "";
   modalajouter.classList.add("hidden");
 };
+
