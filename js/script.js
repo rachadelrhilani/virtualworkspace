@@ -11,7 +11,7 @@ let workers = [
   {
     id: Date.now(),
     name: "Rachad",
-    role: "Administrateur système",
+    role: "Technicien IT",
     email: "test@mail.com",
     phone: "+212...",
     photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
@@ -20,7 +20,7 @@ let workers = [
   {
     id: Date.now(),
     name: "Rachad",
-    role: "Administrateur système",
+    role: "Réceptionnistes",
     email: "test@mail.com",
     phone: "+212...",
     photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",

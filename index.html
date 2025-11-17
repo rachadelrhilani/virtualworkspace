@@ -13,61 +13,93 @@
         <h1 class="text-center font-bold text-3xl">Virtual Workspace</h1>
     </header>
 
- 
+
     <main class="flex flex-col-reverse md:flex-row">
-        
-      
+
+
         <aside class="w-full md:w-80 h-auto bg-white shadow-lg p-6">
             <h2 class="text-xl font-bold text-gray-800 mb-4">Unassigned Staff</h2>
 
             <div id="staffList" class="space-y-3 mb-4">
             </div>
-            <button id="openModal"
-                class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+            <button id="openModal" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
                 Add New Worker
             </button>
         </aside>
 
-        
-        <div class="aspect-[16/10] w-[95%] mx-auto 
+
+        <section class="aspect-[16/10] w-[95%] mx-auto 
             border-4  shadow-2xl rounded-2xl mb-6 md:mb-0">
-            
+
             <div class="relative grid w-full h-full 
                 grid-cols-[38%_17%_22%_23%] 
-                grid-rows-[34%_31%_32.5%]">
+                grid-rows-[34.5%_31%_32.5%]">
 
                 <img src="image/plan.jpg" class="absolute inset-0 w-full h-full">
 
-                <div class="col-start-1 col-end-2 row-start-1 row-end-2 z-10">
-                    <p class="text-white mt-3">Conférence</p>
+                <div class="col-start-1 col-end-2 row-start-1 row-end-2 z-10 border border-2 border-yellow-400">
+                    <p class="text-white mt-3 text-sm">Conférence</p>
+
+                    <button id="btn-conference"
+                        class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 text-center rounded hover:bg-blue-700">
+                        +
+                    </button>
                 </div>
 
-                <div class="col-start-1 col-end-2 row-start-2 row-end-4 bg-red-500/60 z-10">
-                    <p class="text-white mt-3">Réception</p>
+                <div
+                    class="col-start-1 col-end-2 row-start-2 row-end-4 bg-red-500/60 z-10 border border-2 border-yellow-400">
+                    <p class="text-white mt-3 text-sm">Réception</p>
+
+                    <button id="btn-reception"
+                        class="mt-2 bg-blue-600 text-white text-xs flex justify-center px-2 py-1 rounded hover:bg-blue-700">
+                        +
+                    </button>
                 </div>
 
-                <div class="col-start-3 col-end-4 row-start-1 row-end-2 bg-red-500/60 text-black z-10">
-                    <p class="text-white mt-3">Serveurs</p>
+                <div
+                    class="col-start-3 col-end-4 row-start-1 row-end-2 bg-red-500/60 text-black z-10 border border-2 border-yellow-400">
+                    <p class="text-white mt-3 text-sm">Serveurs</p>
+
+                    <button id="btn-serveurs"
+                        class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 rounded hover:bg-blue-700">
+                        +
+                    </button>
                 </div>
 
-                <div class="col-start-4 col-end-6 row-start-1 row-end-2 bg-red-500/60 z-10">
-                    <p class="text-white mt-3">Sécurité</p>
+                <div
+                    class="col-start-4 col-end-6 row-start-1 row-end-2 bg-red-500/60 z-10 border border-2 border-yellow-400">
+                    <p class="text-white mt-3 text-sm">Sécurité</p>
+
+                    <button id="btn-securite"
+                        class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 rounded hover:bg-blue-700">
+                        +
+                    </button>
                 </div>
 
-                <div class="col-start-3 col-end-4 row-start-3 row-end-4 z-10">
-                    <p class="text-white mt-3">Personnel</p>
+                <div class="col-start-3 col-end-4 row-start-3 row-end-4 z-10 border border-2 border-yellow-400">
+                    <p class="text-white mt-3 text-sm">Personnel</p>
+
+                    <button id="btn-personnel"
+                        class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 rounded hover:bg-blue-700">
+                        +
+                    </button>
                 </div>
 
-                <div class="col-start-4 col-end-5 row-start-3 row-end-4 bg-red-500/60 z-10">
-                    <p class="text-white mt-3">Archives</p>
+                <div
+                    class="col-start-4 col-end-5 row-start-3 row-end-4 bg-red-500/60 z-10 border border-2 border-yellow-400">
+                    <p class="text-white mt-3 text-sm">Archives</p>
+
+                    <button id="btn-archives"
+                        class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 rounded hover:bg-blue-700">
+                        +
+                    </button>
                 </div>
             </div>
-        </div>
+        </section>
 
     </main>
 
- <div id="modal"
-        class="fixed z-10 inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center p-4">
+    <div id="modal" class="fixed z-10 inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center p-4">
 
         <div class="bg-white w-full max-w-2xl p-6 rounded-xl shadow-lg relative overflow-y-auto max-h-[90vh]">
 
@@ -79,47 +111,35 @@
 
                 <div class="space-y-4">
 
-                        <div>
-                            <label class="block font-medium">Nom</label>
-                            <input type="text" class="w-full border p-2 rounded" id="nom" placeholder="Nom du worker">
-                        </div>
+                    <div>
+                        <label class="block font-medium">Nom</label>
+                        <input type="text" class="w-full border p-2 rounded" id="nom" placeholder="Nom du worker">
+                    </div>
 
 
-                        <div>
-                            <label class="block font-medium">Rôle</label>
-                            <select id="role" class="w-full border p-2">
-                                <option value="responsable_conference">Responsable conférence</option>
-                                <option value="technicien_projection">Technicien projection</option>
-
-                                <option value="agent_accueil">Agent d’accueil</option>
-                                <option value="standardiste">Standardiste</option>
-
-                                <option value="administrateur_systeme">Administrateur système</option>
-                                <option value="technicien_reseau">Technicien réseau</option>
-
-                                <option value="analyste_videosurveillance">Analyste vidéosurveillance</option>
-                                <option value="responsable_controle_acces">Responsable contrôle d’accès</option>
-
-                                <option value="gestionnaire_rh">Gestionnaire RH</option>
-                                <option value="assistant_rh">Assistant RH</option>
-
-                                <option value="archiviste">Archiviste</option>
-                                <option value="documentaliste">Documentaliste</option>
-
-                            </select>
-                        </div>
+                    <div>
+                        <label class="block font-medium">Rôle</label>
+                        <select id="role" class="w-full border p-2">
+                            <option value="Technicien IT">Technicien IT</option>
+                            <option value="Réceptionnistes">Réceptionnistes</option>
+                            <option value="Agent de sécurité">Agent de sécurité</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Menage">Menage</option>
+                        </select>
+                    </div>
 
 
-                        <div>
-                            <label class="block font-medium">Email</label>
-                            <input type="email" id="email" class="w-full border p-2 rounded" placeholder="email@example.com">
-                        </div>
+                    <div>
+                        <label class="block font-medium">Email</label>
+                        <input type="email" id="email" class="w-full border p-2 rounded"
+                            placeholder="email@example.com">
+                    </div>
 
-                        <!-- Téléphone -->
-                        <div>
-                            <label class="block font-medium">Téléphone</label>
-                            <input type="text" id="tel" class="w-full border p-2 rounded" placeholder="+212...">
-                        </div>
+                    <!-- Téléphone -->
+                    <div>
+                        <label class="block font-medium">Téléphone</label>
+                        <input type="text" id="tel" class="w-full border p-2 rounded" placeholder="+212...">
+                    </div>
                 </div>
 
 
