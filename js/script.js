@@ -245,10 +245,7 @@ function openAssignModal(zone) {
                 </div>
             `;
 
-            item.onclick = () =>{
-              assignToZone(worker, zone);
-              console.log(workers.pop((w) => w.name !== worker.name));
-            } 
+            item.onclick = () =>{assignToZone(worker, zone);} 
             list.appendChild(item);
         }
     });
@@ -274,6 +271,7 @@ function assignToZone(worker, zone) {
         affichestaff();
         card.remove();
     } 
+    
     zoneDiv.appendChild(card);
 
     // Fermer le modal
