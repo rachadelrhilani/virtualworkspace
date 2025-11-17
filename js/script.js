@@ -18,7 +18,7 @@ let workers = [
     experiences: ["exp1", "exp2"]
   },
   {
-    id: 3,
+    id: Date.now(),
     name: "Rachad",
     role: "Administrateur système",
     email: "test@mail.com",
