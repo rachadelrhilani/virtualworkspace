@@ -66,7 +66,7 @@ photoInput.addEventListener("input", () => {
   img.src = photoInput.value;
 });
 
-/*Affiche le photo*/
+/*recuperer les experiences*/
 const container = document.getElementById("experiencesContainer");
 const addExp = document.getElementById("addExperience");
 
@@ -235,7 +235,7 @@ function openAssignModal(zone) {
     workers.filter(worker => worker.assigned === false).forEach(worker => {
         if (allowedRoles.includes(worker.role.toLowerCase())) {
             const item = document.createElement("div");
-            item.className = "p-3 bg-gray-100 rounded flex items-center gap-3 cursor-pointer hover:bg-gray-200";
+            item.className = "p-3 bg-gray-100 rounded flex items-center gap-3 cursor-pointer hover:bg-gray-200 ";
 
             item.innerHTML = `
                 <img src="${worker.photo}" class="w-10 h-10 rounded-full object-cover">
