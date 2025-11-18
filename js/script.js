@@ -12,7 +12,7 @@ let workers = [
   {
     id: Date.now(),
     name: "Ahmed",
-    role: "Technicien",
+    role: "technicien_it",
     email: "test@mail.com",
     phone: "+212...",
     photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
@@ -208,12 +208,12 @@ btn_securite.onclick = () => openAssignModal("securite");
 btn_personnel.onclick = () => openAssignModal("personnel");
 btn_archives.onclick = () => openAssignModal("archives");
 const accessRules = {
-    conference: ["manager", "autre"],
-    reception: ["receptionniste", "manager"],
-    serveurs: ["technicien", "manager"],
-    securite: ["agent_securite", "manager"],
-    personnel: ["manager", "autre"],
-    archives: ["manager", "technicien", "agent_securite", "autre"] // nettoyage interdit
+    conference: ["manager", "menage","autres"],
+    reception: ["receptionniste", "manager","menage"],
+    serveurs: ["technicien_it", "manager","menage"],
+    securite: ["agent_securite", "manager","menage"],
+    personnel: ["manager", "menage"],
+    archives: ["manager", "technicien_it", "agent_securite"] 
 };
 const zoneCapacity = {
   serveurs: 2,
