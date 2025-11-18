@@ -135,9 +135,7 @@ document.getElementById("Enregistrer").onclick = function (e) {
   const telephone = document.getElementById("tel");
   const photo = document.getElementById("photoInput");
 
-  // ----------------------------
-  // VALIDATION DE BASE
-  // ----------------------------
+  
   if (nom.value.trim() === "") {
     return alert("Le nom est obligatoire !");
   }
@@ -148,9 +146,7 @@ document.getElementById("Enregistrer").onclick = function (e) {
     return alert("Téléphone invalide !");
   }
 
-  // ----------------------------
-  // CRÉATION DE L’OBJET WORKER
-  // ----------------------------
+ 
   const newWorker = {
     id: Date.now(),
     name: nom.value,
@@ -185,16 +181,12 @@ document.getElementById("Enregistrer").onclick = function (e) {
     });
   });
 
-  // ----------------------------
-  // AJOUT DANS workers
-  // ----------------------------
+ 
   workers.push(newWorker);
 
   affichestaff();
 
-  // ----------------------------
-  // RESET FORM
-  // ----------------------------
+  
   nom.value = "";
   email.value = "";
   telephone.value = "";
@@ -223,12 +215,20 @@ const accessRules = {
     personnel: ["manager", "autre"],
     archives: ["manager", "technicien", "agent_securite", "autre"] // nettoyage interdit
 };
+const zoneCapacity = {
+  serveurs: 2,
+  securite: 2,
+  personnel: 2,
+  archives: 2,
+  conference: 3,
+  reception: 6
+};
 function openAssignModal(zone) {
     const modal = document.getElementById("assignModal");
     const list = document.getElementById("assignList");
     modal.classList.remove("hidden");
 
-    list.innerHTML = ""; // reset l'affichage
+    list.innerHTML = ""; 
 
     const allowedRoles = accessRules[zone];
 
@@ -252,10 +252,8 @@ function openAssignModal(zone) {
 }
 function assignToZone(worker, zone) {
     const zoneDiv = document.getElementById("zone-" + zone);
-    // 1. Marquer comme assigné
     worker.assigned = true;
 
-    // 2. Mettre à jour liste unassigned
     affichestaff();
     const card = document.createElement("div");
     card.className = "p-1 bg-white shadow rounded flex items-center gap-2 mt-2 w-fit";
@@ -274,7 +272,6 @@ function assignToZone(worker, zone) {
     
     zoneDiv.appendChild(card);
 
-    // Fermer le modal
     document.getElementById("assignModal").classList.add("hidden");
 }
 
