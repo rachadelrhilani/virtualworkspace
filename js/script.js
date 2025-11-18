@@ -252,7 +252,6 @@ function openAssignModal(zone) {
 }
 function assignToZone(worker, zone) {
     const zoneDiv = document.getElementById("zone-" + zone);
-     // ---- Vérifier la capacité ----
     const currentCount = zoneDiv.querySelectorAll(".workerCard").length;
 
     if (currentCount >= zoneCapacity[zone]) {
@@ -270,7 +269,8 @@ function assignToZone(worker, zone) {
         <button class="bg-red-600 mt-3 text-white px-2 rounded remworker">X</button>
     `;
     let remworker =card.querySelector(".remworker");
-    remworker.onclick = () =>{
+    remworker.onclick = (e) =>{
+      
         worker.assigned = false;
         affichestaff();
         card.remove();
@@ -278,6 +278,8 @@ function assignToZone(worker, zone) {
     } 
     
     zoneDiv.appendChild(card);
+     
+    card.onclick = () => openInfoModal(worker);
 
     checkRedZone(zone);
 
@@ -286,18 +288,38 @@ function assignToZone(worker, zone) {
 function checkRedZone(zone) {
     const zoneDiv = document.getElementById("zone-" + zone);
 
-    const isRedZone = zoneDiv.classList.contains("zone-red");
+    const redzone = zoneDiv.classList.contains("zone-red");
 
-    if (!isRedZone){
+    if (!redzone){
       return;
     } 
 
-    const currentCount = zoneDiv.querySelectorAll(".workerCard").length;
+    const currentcount = zoneDiv.querySelectorAll(".workerCard").length;
 
-    if (currentCount >= 1) {
+    if (currentcount >= 1) {
         zoneDiv.classList.remove("bg-red-500/60");
     } else {
         zoneDiv.classList.add("bg-red-500/60");
+    }
+}
+function openInfoModal(worker) {
+    document.getElementById("infoPhoto").src = worker.photo;
+    document.getElementById("infoName").innerText = worker.name;
+    document.getElementById("infoRole").innerText = worker.role;
+    document.getElementById("infoEmail").innerText = worker.email;
+    document.getElementById("infoPhone").innerText = worker.phone;
+
+    const expList = document.getElementById("infoExp");
+    expList.innerHTML = "";
+    worker.experiences.forEach(exp => {
+        const li = document.createElement("li");
+        li.innerText = exp;
+        expList.appendChild(li);
+    });
+
+    document.getElementById("infoModal").classList.remove("hidden");
+    document.getElementById("closeInfoModal").onclick=()=>{
+      document.getElementById("infoModal").classList.add("hidden");
     }
 }
 
