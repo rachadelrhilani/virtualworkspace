@@ -270,7 +270,7 @@ function assignToZone(worker, zone) {
     `;
     let remworker =card.querySelector(".remworker");
     remworker.onclick = (e) =>{
-      
+        e.stopPropagation()
         worker.assigned = false;
         affichestaff();
         card.remove();
