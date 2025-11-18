@@ -135,7 +135,7 @@ document.getElementById("Enregistrer").onclick = function (e) {
   const telephone = document.getElementById("tel");
   const photo = document.getElementById("photoInput");
 
-  
+
   if (nom.value.trim() === "") {
     return alert("Le nom est obligatoire !");
   }
@@ -146,7 +146,7 @@ document.getElementById("Enregistrer").onclick = function (e) {
     return alert("Téléphone invalide !");
   }
 
- 
+
   const newWorker = {
     id: Date.now(),
     name: nom.value,
@@ -181,12 +181,12 @@ document.getElementById("Enregistrer").onclick = function (e) {
     });
   });
 
- 
+
   workers.push(newWorker);
 
   affichestaff();
 
-  
+
   nom.value = "";
   email.value = "";
   telephone.value = "";
@@ -197,10 +197,10 @@ document.getElementById("Enregistrer").onclick = function (e) {
 /* ajoute dans une zone */
 let btn_conference = document.getElementById("btn-conference");
 let btn_reception = document.getElementById("btn-reception");
-let btn_serveurs=document.getElementById("btn-serveurs");
-let btn_securite=document.getElementById("btn-securite");
-let btn_personnel=document.getElementById("btn-personnel");
-let btn_archives=document.getElementById("btn-archives")
+let btn_serveurs = document.getElementById("btn-serveurs");
+let btn_securite = document.getElementById("btn-securite");
+let btn_personnel = document.getElementById("btn-personnel");
+let btn_archives = document.getElementById("btn-archives")
 btn_conference.onclick = () => openAssignModal("conference");
 btn_reception.onclick = () => openAssignModal("reception");
 btn_serveurs.onclick = () => openAssignModal("serveurs");
@@ -208,12 +208,12 @@ btn_securite.onclick = () => openAssignModal("securite");
 btn_personnel.onclick = () => openAssignModal("personnel");
 btn_archives.onclick = () => openAssignModal("archives");
 const accessRules = {
-    conference: ["manager", "menage","autres"],
-    reception: ["receptionniste", "manager","menage"],
-    serveurs: ["technicien_it", "manager","menage"],
-    securite: ["agent_securite", "manager","menage"],
-    personnel: ["manager", "menage"],
-    archives: ["manager", "technicien_it", "agent_securite"] 
+  conference: ["manager", "menage", "autres"],
+  reception: ["receptionniste", "manager", "menage"],
+  serveurs: ["technicien_it", "manager", "menage"],
+  securite: ["agent_securite", "manager", "menage"],
+  personnel: ["manager", "menage"],
+  archives: ["manager", "technicien_it", "agent_securite"]
 };
 const zoneCapacity = {
   serveurs: 2,
@@ -224,20 +224,20 @@ const zoneCapacity = {
   reception: 6
 };
 function openAssignModal(zone) {
-    const modal = document.getElementById("assignModal");
-    const list = document.getElementById("assignList");
-    modal.classList.remove("hidden");
+  const modal = document.getElementById("assignModal");
+  const list = document.getElementById("assignList");
+  modal.classList.remove("hidden");
 
-    list.innerHTML = ""; 
+  list.innerHTML = "";
 
-    const allowedRoles = accessRules[zone];
+  const allowedRoles = accessRules[zone];
 
-    workers.filter(worker => worker.assigned === false).forEach(worker => {
-        if (allowedRoles.includes(worker.role.toLowerCase())) {
-            const item = document.createElement("div");
-            item.className = "p-3 bg-gray-100 rounded flex items-center gap-3 cursor-pointer hover:bg-gray-200 ";
+  workers.filter(worker => worker.assigned === false).forEach(worker => {
+    if (allowedRoles.includes(worker.role.toLowerCase())) {
+      const item = document.createElement("div");
+      item.className = "p-3 bg-gray-100 rounded flex items-center gap-3 cursor-pointer hover:bg-gray-200 ";
 
-            item.innerHTML = `
+      item.innerHTML = `
                 <img src="${worker.photo}" class="w-10 h-10 rounded-full object-cover">
                 <div>
                 <p>${worker.name}</p>
@@ -245,81 +245,88 @@ function openAssignModal(zone) {
                 </div>
             `;
 
-            item.onclick = () =>{assignToZone(worker, zone);} 
-            list.appendChild(item);
-        }
-    });
+      item.onclick = () => { assignToZone(worker, zone); }
+      list.appendChild(item);
+    }
+  });
 }
 function assignToZone(worker, zone) {
-    const zoneDiv = document.getElementById("zone-" + zone);
-    const currentCount = zoneDiv.querySelectorAll(".workerCard").length;
+  const zoneDiv = document.getElementById("zone-" + zone);
+  const currentCount = zoneDiv.querySelectorAll(".workerCard").length;
 
-    if (currentCount >= zoneCapacity[zone]) {
-        return alert(`La zone ${zone} est déjà pleine !`);
-    }
-    worker.assigned = true;
+  if (currentCount >= zoneCapacity[zone]) {
+    return alert(`La zone ${zone} est déjà pleine !`);
+  }
+  worker.assigned = true;
 
+  affichestaff();
+  const card = document.createElement("div");
+card.className =
+  "workerCard flex items-center gap-2 bg-white shadow rounded px-2 py-1 mt-2 w-fit max-w-full cursor-pointer";
+
+card.innerHTML = `
+  <img src="${worker.photo}"
+       class="card-photo">
+
+  <span class="card-name">${worker.name}</span>
+
+  <button class="remworker">X</button>
+`;
+
+
+
+  let remworker = card.querySelector(".remworker");
+  remworker.onclick = (e) => {
+    e.stopPropagation()
+    worker.assigned = false;
     affichestaff();
-    const card = document.createElement("div");
-    card.className = "workerCard p-1 bg-white shadow rounded flex items-center gap-2 mt-2 w-fit";
-
-    card.innerHTML = `
-        <img src="${worker.photo}" class="w-8 h-8 rounded-full object-cover">
-        <span class="text-sm">${worker.name}</span>
-        <button class="bg-red-600 mt-3 text-white px-2 rounded remworker">X</button>
-    `;
-    let remworker =card.querySelector(".remworker");
-    remworker.onclick = (e) =>{
-        e.stopPropagation()
-        worker.assigned = false;
-        affichestaff();
-        card.remove();
-        checkRedZone(zone);
-    } 
-    
-    zoneDiv.appendChild(card);
-     
-    card.onclick = () => openInfoModal(worker);
-
+    card.remove();
     checkRedZone(zone);
+  }
 
-    document.getElementById("assignModal").classList.add("hidden");
+  zoneDiv.appendChild(card);
+
+  card.onclick = () => openInfoModal(worker);
+
+  checkRedZone(zone);
+
+  document.getElementById("assignModal").classList.add("hidden");
 }
 function checkRedZone(zone) {
-    const zoneDiv = document.getElementById("zone-" + zone);
+  const zoneDiv = document.getElementById("zone-" + zone);
 
-    const redzone = zoneDiv.classList.contains("zone-red");
+  const redzone = zoneDiv.classList.contains("zone-red");
 
-    if (!redzone){
-      return;
-    } 
+  if (!redzone) {
+    return;
+  }
 
-    const currentcount = zoneDiv.querySelectorAll(".workerCard").length;
+  const currentcount = zoneDiv.querySelectorAll(".workerCard").length;
 
-    if (currentcount >= 1) {
-        zoneDiv.classList.remove("bg-red-500/60");
-    } else {
-        zoneDiv.classList.add("bg-red-500/60");
-    }
+  if (currentcount >= 1) {
+    zoneDiv.classList.remove("bg-red-500/60");
+  } else {
+    zoneDiv.classList.add("bg-red-500/60");
+  }
 }
 function openInfoModal(worker) {
-    document.getElementById("infoPhoto").src = worker.photo;
-    document.getElementById("infoName").innerText = worker.name;
-    document.getElementById("infoRole").innerText = worker.role;
-    document.getElementById("infoEmail").innerText = worker.email;
-    document.getElementById("infoPhone").innerText = worker.phone;
+  document.getElementById("infoPhoto").src = worker.photo;
+  document.getElementById("infoName").innerText = worker.name;
+  document.getElementById("infoRole").innerText = worker.role;
+  document.getElementById("infoEmail").innerText = worker.email;
+  document.getElementById("infoPhone").innerText = worker.phone;
 
-    const expList = document.getElementById("infoExp");
-    expList.innerHTML = "";
-    worker.experiences.forEach(exp => {
-        const li = document.createElement("li");
-        li.innerText = exp;
-        expList.appendChild(li);
-    });
+  const expList = document.getElementById("infoExp");
+  expList.innerHTML = "";
+  worker.experiences.forEach(exp => {
+    const li = document.createElement("li");
+    li.innerText = exp;
+    expList.appendChild(li);
+  });
 
-    document.getElementById("infoModal").classList.remove("hidden");
-    document.getElementById("closeInfoModal").onclick=()=>{
-      document.getElementById("infoModal").classList.add("hidden");
-    }
+  document.getElementById("infoModal").classList.remove("hidden");
+  document.getElementById("closeInfoModal").onclick = () => {
+    document.getElementById("infoModal").classList.add("hidden");
+  }
 }
 
