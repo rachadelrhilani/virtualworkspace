@@ -252,11 +252,17 @@ function openAssignModal(zone) {
 }
 function assignToZone(worker, zone) {
     const zoneDiv = document.getElementById("zone-" + zone);
+     // ---- Vérifier la capacité ----
+    const currentCount = zoneDiv.querySelectorAll(".workerCard").length;
+
+    if (currentCount >= zoneCapacity[zone]) {
+        return alert(`La zone ${zone} est déjà pleine !`);
+    }
     worker.assigned = true;
 
     affichestaff();
     const card = document.createElement("div");
-    card.className = "p-1 bg-white shadow rounded flex items-center gap-2 mt-2 w-fit";
+    card.className = "workerCard p-1 bg-white shadow rounded flex items-center gap-2 mt-2 w-fit";
 
     card.innerHTML = `
         <img src="${worker.photo}" class="w-8 h-8 rounded-full object-cover">
@@ -268,10 +274,30 @@ function assignToZone(worker, zone) {
         worker.assigned = false;
         affichestaff();
         card.remove();
+        checkRedZone(zone);
     } 
     
     zoneDiv.appendChild(card);
 
+    checkRedZone(zone);
+
     document.getElementById("assignModal").classList.add("hidden");
+}
+function checkRedZone(zone) {
+    const zoneDiv = document.getElementById("zone-" + zone);
+
+    const isRedZone = zoneDiv.classList.contains("zone-red");
+
+    if (!isRedZone){
+      return;
+    } 
+
+    const currentCount = zoneDiv.querySelectorAll(".workerCard").length;
+
+    if (currentCount >= 1) {
+        zoneDiv.classList.remove("bg-red-500/60");
+    } else {
+        zoneDiv.classList.add("bg-red-500/60");
+    }
 }
 
