@@ -104,6 +104,9 @@ addExp.addEventListener("click", () => {
 });
 
 
+function saveWorkers() {
+  localStorage.setItem("workers", JSON.stringify(workers));
+}
 /* affiche le staf */
 function affichestaff() {
   const staffList = document.getElementById("staffList");
@@ -212,7 +215,7 @@ const accessRules = {
   reception: ["receptionniste", "manager", "menage"],
   serveurs: ["technicien_it", "manager", "menage"],
   securite: ["agent_securite", "manager", "menage"],
-  personnel: ["manager", "menage"],
+  personnel: ["manager", "menage","technicien_it","agent_securite","receptionniste","autres"],
   archives: ["manager", "technicien_it", "agent_securite"]
 };
 const zoneCapacity = {
@@ -265,13 +268,16 @@ card.className =
   "workerCard flex items-center gap-2 bg-white shadow rounded px-2 py-1 mt-2 w-fit max-w-full cursor-pointer";
 
 card.innerHTML = `
-  <img src="${worker.photo}"
-       class="card-photo">
-
-  <span class="card-name">${worker.name}</span>
+  <img src="${worker.photo}" class="card-photo">
+  
+  <div class="card-text">
+      <span class="card-name">${worker.name}</span>
+      <p class="card-role">${worker.role}</p>
+  </div>
 
   <button class="remworker">X</button>
 `;
+
 
 
 
