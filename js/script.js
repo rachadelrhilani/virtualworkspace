@@ -6,7 +6,7 @@ let workers = [
     email: "test@mail.com",
     phone: "+212...",
     photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
-    experiences: ["exp1", "exp2"],
+    experiences: [],
     assigned: false
   },
   {
@@ -16,7 +16,7 @@ let workers = [
     email: "test@mail.com",
     phone: "+212...",
     photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
-    experiences: ["exp1", "exp2"],
+    experiences: [],
     assigned: false
   },
   {
@@ -26,7 +26,7 @@ let workers = [
     email: "test@mail.com",
     phone: "+212...",
     photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
-    experiences: ["exp1", "exp2"],
+    experiences: [],
     assigned: false
   },
   {
@@ -36,7 +36,7 @@ let workers = [
     email: "test@mail.com",
     phone: "+212...",
     photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
-    experiences: ["exp1", "exp2"],
+    experiences: [],
     assigned: false
   }
 ];
@@ -176,8 +176,8 @@ document.getElementById("Enregistrer").onclick = function (e) {
 
     newWorker.experiences.push({
       role: roleExp,
-      from: fromExp,
-      to: toExp
+      from: fromExp.value,
+      to: toExp.value
     });
   });
 
