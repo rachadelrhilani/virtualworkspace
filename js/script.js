@@ -136,7 +136,7 @@ document.getElementById("Enregistrer").onclick = function (e) {
   const photo = document.getElementById("photoInput");
 
 
-  if (nom.value.trim() === "") {
+  if (nom.value.trim() === ""||!isNaN(nom.value.trim())) {
     return alert("Le nom est obligatoire !");
   }
   if (!email.value.trim().includes("@")) {
