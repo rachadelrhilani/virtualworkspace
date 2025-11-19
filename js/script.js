@@ -270,6 +270,7 @@ card.className =
 card.innerHTML = `
   <img src="${worker.photo}" class="card-photo">
   
+
   <div class="card-text">
       <span class="card-name">${worker.name}</span>
       <p class="card-role">${worker.role}</p>
