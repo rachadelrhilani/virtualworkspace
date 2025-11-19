@@ -63,7 +63,7 @@ const photoInput = document.getElementById("photoInput");
 const img = document.getElementById("previewImg");
 
 photoInput.addEventListener("input", () => {
-  img.src = photoInput.value;
+  img.src = photoInput.value  || '..\image\manicon.png';
 });
 
 /*recuperer les experiences*/
@@ -136,7 +136,7 @@ document.getElementById("Enregistrer").onclick = function (e) {
   const photo = document.getElementById("photoInput");
 
 
-  if (nom.value.trim() === ""||!isNaN(nom.value.trim())) {
+  if (nom.value.trim() === "" || !isNaN(nom.value.trim())) {
     return alert("Le nom est obligatoire !");
   }
   if (!email.value.trim().includes("@")) {
@@ -318,15 +318,20 @@ function openInfoModal(worker) {
 
   const expList = document.getElementById("infoExp");
   expList.innerHTML = "";
+
   worker.experiences.forEach(exp => {
     const li = document.createElement("li");
-    li.innerText = exp;
+    li.innerHTML = `
+      <strong>${exp.role}</strong><br>
+      De : <span>${exp.from}</span> – À : <span>${exp.to}</span>
+    `;
     expList.appendChild(li);
   });
 
   document.getElementById("infoModal").classList.remove("hidden");
+
   document.getElementById("closeInfoModal").onclick = () => {
     document.getElementById("infoModal").classList.add("hidden");
-  }
+  };
 }
 
