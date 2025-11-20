@@ -114,7 +114,7 @@ function affichestaff() {
 
   workers.filter(worker => worker.assigned === false).forEach(worker => {
     const div = document.createElement("div");
-    div.className = "flex items-center gap-3 p-2 bg-gray-100 rounded-lg shadow";
+    div.className = "flex cursor-pointer items-center gap-3 p-2 bg-gray-100 hover:bg-gray-200 rounded-lg shadow";
 
     div.innerHTML = `
             <img src="${worker.photo}" 
@@ -124,7 +124,9 @@ function affichestaff() {
                 <p class="text-sm text-gray-600">${worker.role}</p>
             </div>
         `;
-
+     div.onclick = ()=>{
+       openInfoModal(worker);
+     }
     staffList.appendChild(div);
   });
 }
@@ -139,15 +141,26 @@ document.getElementById("Enregistrer").onclick = function (e) {
   const photo = document.getElementById("photoInput");
 
 
-  if (nom.value.trim() === "" || !isNaN(nom.value.trim())) {
-    return alert("Le nom est obligatoire !");
-  }
-  if (!email.value.trim().includes("@")) {
-    return alert("Email invalide !");
-  }
-  if (telephone.value.length < 8 || isNaN(telephone.value)) {
-    return alert("Téléphone invalide !");
-  }
+  
+const regexNom = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;  
+const regexEmail = /^[\w.-]+@gmail\.com$/;  
+const regexTelephone = /^(05|06|07)\d{8}$/;  
+
+
+if (!regexNom.test(nom.value.trim())) {
+  return alert("Le nom est obligatoire et ne doit pas contenir de chiffres !");
+}
+
+
+if (!regexEmail.test(email.value.trim())) {
+  return alert("Email invalide ! (ex: exemple@gmail.com)");
+}
+
+
+if (!regexTelephone.test(telephone.value.trim())) {
+  return alert("Téléphone invalide ! (ex: 06XXXXXXXX)");
+}
+
 
 
   const newWorker = {
@@ -164,25 +177,33 @@ document.getElementById("Enregistrer").onclick = function (e) {
 
   const expItems = document.querySelectorAll(".expItem");
 
-  expItems.forEach(item => {
+  
+  for (let item of expItems) {
     const roleExp = item.querySelector(".roleExp").value.trim();
-    const fromExp = item.querySelector(".fromExp");
-    const toExp = item.querySelector(".toExp");
-
-    if (roleExp === "" || fromExp === "" || toExp === "") {
-      return alert("Tous les champs d'expérience doivent être remplis !");
+    const fromExp = item.querySelector(".fromExp").value;
+    const toExp = item.querySelector(".toExp").value;
+    const roleregex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;  
+    if (!roleExp || !fromExp || !toExp) {
+      alert("Tous les champs d'expérience doivent être remplis !");
+      return; 
     }
 
-    if (fromExp.value > toExp.value) {
-      return alert("La date début ne peut pas être supérieure à la date fin !");
+    if(!roleregex.test(roleExp)){
+        alert("le role doit contient seulement des lettres");
+      return; 
+    }
+
+    if (fromExp > toExp) {
+      alert("La date début ne peut pas être supérieure à la date fin !");
+      return; 
     }
 
     newWorker.experiences.push({
       role: roleExp,
-      from: fromExp.value,
-      to: toExp.value
+      from: fromExp,
+      to: toExp
     });
-  });
+  }
 
 
   workers.push(newWorker);
