@@ -22,7 +22,7 @@ const photoInput = document.getElementById("photoInput");
 const img = document.getElementById("previewImg");
 
 photoInput.addEventListener("input", () => {
-  img.src = photoInput.value  || '..\image\manicon.png';
+  img.src = photoInput.value  || "..\image\manicon.png";
 });
 
 /*recuperer les experiences*/
@@ -147,7 +147,7 @@ if (!regexTelephone.test(telephone.value.trim())) {
     const toExp = item.querySelector(".toExp").value;
     const roleregex = /^[A-Za-z'-]+$/;  
     if (!roleExp || !fromExp || !toExp) {
-      alert("Tous les champs d'expérience doivent être remplis !");
+      alert("Tous les champs d'expérience doivent etre remplis !");
       return; 
     }
 

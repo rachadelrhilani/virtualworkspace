@@ -9,6 +9,21 @@
     scrollbar-width: thin;
     scrollbar-color: white #e5e5e5;
 }
+.anime-modal {
+    animation: zoomFade 0.3s ease forwards;
+}
+
+@keyframes zoomFade {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 
 .card-text {
     display: flex;
@@ -36,14 +51,14 @@
     margin-bottom: 10px;
 }
 
-/* Affiche uniquement en mode PORTRAIT */
+
 @media (orientation: portrait) {
     .rotate-warning {
         display: block;
     }
 }
 
-/* Card responsive */
+
 .workerCard {
     display: flex;
     align-items: center;
@@ -89,7 +104,6 @@
 
 /* -------------------- Responsive -------------------- */
 
-/* Mobile portrait (≤480px) */
 @media (max-width: 480px) {
     .workerCard {
         gap: 6px;
@@ -118,7 +132,7 @@
     }
 }
 
-/* Mobile paysage & tablette portrait (481px → 768px) */
+
 @media (min-width: 481px) and (max-width: 768px) {
     .card-photo {
         width: 28px;
@@ -142,7 +156,7 @@
     }
 }
 
-/* Tablette paysage (769px → 1024px) */
+
 @media (min-width: 769px) and (max-width: 1024px) {
     .card-photo {
         width: 32px;
@@ -166,7 +180,7 @@
     }
 }
 
-/* Desktop (≥1025px) */
+
 @media (min-width: 1025px) {
     .card-photo {
         width: 40px;
