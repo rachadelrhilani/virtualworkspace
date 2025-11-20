@@ -1,45 +1,4 @@
-let workers = [
-  {
-    id: Date.now(),
-    name: "hamza",
-    role: "agent_securite",
-    email: "test@mail.com",
-    phone: "+212...",
-    photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
-    experiences: [],
-    assigned: false
-  },
-  {
-    id: Date.now(),
-    name: "Ahmed",
-    role: "technicien_it",
-    email: "test@mail.com",
-    phone: "+212...",
-    photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
-    experiences: [],
-    assigned: false
-  },
-  {
-    id: Date.now(),
-    name: "karim",
-    role: "receptionniste",
-    email: "test@mail.com",
-    phone: "+212...",
-    photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
-    experiences: [],
-    assigned: false
-  },
-  {
-    id: Date.now(),
-    name: "Rachad",
-    role: "Manager",
-    email: "test@mail.com",
-    phone: "+212...",
-    photo: "https://intranet.youcode.ma/storage/users/profile/thumbnail/1749-1760996442.png",
-    experiences: [],
-    assigned: false
-  }
-];
+let workers = [];
 
 /*Affiche le modal*/
 const closeModal = document.getElementById("closeModal");
@@ -104,9 +63,7 @@ addExp.addEventListener("click", () => {
 });
 
 
-function saveWorkers() {
-  localStorage.setItem("workers", JSON.stringify(workers));
-}
+
 /* affiche le staf */
 function affichestaff() {
   const staffList = document.getElementById("staffList");
@@ -142,10 +99,13 @@ document.getElementById("Enregistrer").onclick = function (e) {
 
 
   
-const regexNom = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;  
+const regexNom = /^[A-Za-z]+$/;  
 const regexEmail = /^[\w.-]+@gmail\.com$/;  
 const regexTelephone = /^(05|06|07)\d{8}$/;  
 
+if(!(photo.value.trim())){
+  return alert("la photo  !");
+}
 
 if (!regexNom.test(nom.value.trim())) {
   return alert("Le nom est obligatoire et ne doit pas contenir de chiffres !");
@@ -170,6 +130,7 @@ if (!regexTelephone.test(telephone.value.trim())) {
     email: email.value,
     phone: telephone.value,
     photo: photo.value,
+    location: "",
     experiences: [],
     assigned: false
   };
@@ -282,7 +243,7 @@ function assignToZone(worker, zone) {
     return alert(`La zone ${zone} est déjà pleine !`);
   }
   worker.assigned = true;
-
+  worker.location = zone;
   affichestaff();
   const card = document.createElement("div");
 card.className =
@@ -344,6 +305,7 @@ function openInfoModal(worker) {
   document.getElementById("infoEmail").innerText = worker.email;
   document.getElementById("infoPhone").innerText = worker.phone;
 
+  document.getElementById("infoLocation").innerText = worker.location || "Non assigné";
   const expList = document.getElementById("infoExp");
   expList.innerHTML = "";
 
