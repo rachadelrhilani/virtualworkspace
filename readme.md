@@ -85,7 +85,7 @@ Une section affiche le **nombre maximum d’employés** par zone (ex : conféren
 ---
 
 ## Structure du projet
-`
+```
 /project
 │── js/
 │ └── script.js
@@ -94,7 +94,7 @@ Une section affiche le **nombre maximum d’employés** par zone (ex : conféren
 │── image/
 │ └── plan.jpg
 │── README.md
-│── index.html`
+│── index.html
 ---
 
 ## Validation
