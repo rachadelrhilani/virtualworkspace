@@ -10,7 +10,7 @@
     scrollbar-color: white #e5e5e5;
 }
 .anime-modal {
-    animation: zoomFade 0.3s ease forwards;
+    animation: zoomFade 0.3s ease;
 }
 
 @keyframes zoomFade {
@@ -28,7 +28,7 @@
 .card-text {
     display: flex;
     flex-direction: column;
-    min-width: 0; /* permet ellipsis */
+    min-width: 0; 
 }
 .card-role {
     font-size: 12px;
