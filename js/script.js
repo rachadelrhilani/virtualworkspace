@@ -88,6 +88,8 @@ function affichestaff() {
   });
 }
 affichestaff();
+
+/* ---------------ajoute une personne--------------- */
 document.getElementById("Enregistrer").onclick = function (e) {
   e.preventDefault();
 
@@ -143,7 +145,7 @@ if (!regexTelephone.test(telephone.value.trim())) {
     const roleExp = item.querySelector(".roleExp").value.trim();
     const fromExp = item.querySelector(".fromExp").value;
     const toExp = item.querySelector(".toExp").value;
-    const roleregex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;  
+    const roleregex = /^[A-Za-z'-]+$/;  
     if (!roleExp || !fromExp || !toExp) {
       alert("Tous les champs d'expérience doivent être remplis !");
       return; 
