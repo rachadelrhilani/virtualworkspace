@@ -82,7 +82,7 @@ function affichestaff() {
             </div>
         `;
      div.onclick = ()=>{
-       openInfoModal(worker);
+       Modalinfos(worker);
      }
     staffList.appendChild(div);
   });
@@ -176,7 +176,6 @@ if (!regexTelephone.test(telephone.value.trim())) {
   email.value = "";
   telephone.value = "";
   photo.value = "";
-  previewImg.src = "";
   modalajouter.classList.add("hidden");
 };
 /* ajoute dans une zone */
@@ -186,12 +185,12 @@ let btn_serveurs = document.getElementById("btn-serveurs");
 let btn_securite = document.getElementById("btn-securite");
 let btn_personnel = document.getElementById("btn-personnel");
 let btn_archives = document.getElementById("btn-archives")
-btn_conference.onclick = () => openAssignModal("conference");
-btn_reception.onclick = () => openAssignModal("reception");
-btn_serveurs.onclick = () => openAssignModal("serveurs");
-btn_securite.onclick = () => openAssignModal("securite");
-btn_personnel.onclick = () => openAssignModal("personnel");
-btn_archives.onclick = () => openAssignModal("archives");
+btn_conference.onclick = () => modalworkers("conference");
+btn_reception.onclick = () => modalworkers("reception");
+btn_serveurs.onclick = () => modalworkers("serveurs");
+btn_securite.onclick = () => modalworkers("securite");
+btn_personnel.onclick = () => modalworkers("personnel");
+btn_archives.onclick = () => modalworkers("archives");
 const accessRules = {
   conference: ["manager", "menage", "autres"],
   reception: ["receptionniste", "manager", "menage"],
@@ -208,7 +207,7 @@ const zoneCapacity = {
   conference: 3,
   reception: 6
 };
-function openAssignModal(zone) {
+function modalworkers(zone) {
   const modal = document.getElementById("assignModal");
   const list = document.getElementById("assignList");
   modal.classList.remove("hidden");
@@ -230,12 +229,12 @@ function openAssignModal(zone) {
                 </div>
             `;
 
-      item.onclick = () => { assignToZone(worker, zone); }
+      item.onclick = () => { assignezone(worker, zone); }
       list.appendChild(item);
     }
   });
 }
-function assignToZone(worker, zone) {
+function assignezone(worker, zone) {
   const zoneDiv = document.getElementById("zone-" + zone);
   const currentCount = zoneDiv.querySelectorAll(".workerCard").length;
 
@@ -270,18 +269,21 @@ card.innerHTML = `
     worker.assigned = false;
     affichestaff();
     card.remove();
-    checkRedZone(zone);
+    zonesred(zone);
   }
 
   zoneDiv.appendChild(card);
 
-  card.onclick = () => openInfoModal(worker);
+  card.onclick = () => Modalinfos(worker);
 
-  checkRedZone(zone);
+  zonesred(zone);
 
   document.getElementById("assignModal").classList.add("hidden");
 }
-function checkRedZone(zone) {
+
+
+/* verifier si les zones rouge ne sont pas vider */
+function zonesred(zone) {
   const zoneDiv = document.getElementById("zone-" + zone);
 
   const redzone = zoneDiv.classList.contains("zone-red");
@@ -298,7 +300,10 @@ function checkRedZone(zone) {
     zoneDiv.classList.add("bg-red-500/60");
   }
 }
-function openInfoModal(worker) {
+
+
+/* un modal pour affiche les infomations de worker*/
+function Modalinfos(worker) {
   document.getElementById("infoPhoto").src = worker.photo;
   document.getElementById("infoName").innerText = worker.name;
   document.getElementById("infoRole").innerText = worker.role;
