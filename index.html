@@ -57,7 +57,7 @@
         grid-cols-[38%_17%_22%_23%] 
         grid-rows-[34.5%_31%_32.5%]">
 
-        <img src="image/plan.jpg" class="absolute inset-0 w-full h-full opacity-80">
+        <img src="image/plan.jpg" class="absolute inset-0 w-full h-full opacity-80" alt="plan">
 
         
         <div id="zone-conference"
@@ -173,7 +173,7 @@
                                 placeholder="email@example.com">
                         </div>
 
-                        <!-- Téléphone -->
+                        
                         <div>
                             <label class="block font-medium">Téléphone</label>
                             <input type="text" id="tel" class="w-full border p-2 rounded" placeholder="+212...">
@@ -190,8 +190,8 @@
                                 placeholder="https://exemple.com/photo.jpg">
 
                             <div class="mt-3 flex justify-center">
-                                <img id="previewImg" src="https://via.placeholder.com/100"
-                                    class="w-24 h-24 rounded-full object-cover border shadow">
+                                <img id="previewImg" src="/image/manicon.png"
+                                    class="w-24 h-24 rounded-full object-cover border shadow" alt="previewImg">
                             </div>
                         </div>
 
@@ -236,8 +236,8 @@
         </div>
         <div id="infoModal" class="fixed z-10 inset-0 bg-black/50 flex items-center justify-center hidden anime-modal">
             <div class="bg-white rounded-lg p-4 w-80 text-center overflow-y-auto max-h-[90vh]">
-                <img id="infoPhoto" class="w-24 h-24 rounded-full object-cover mx-auto mb-3">
-                <h2 id="infoName" class="text-lg font-bold mb-2"></h2>
+                <img id="infoPhoto" src="" class="w-24 h-24 rounded-full object-cover mx-auto mb-3" alt="infoPhoto">
+                <h2 id="infoName" class="text-lg font-bold mb-2">Info de worker</h2>
                 <p><strong>Rôle :</strong> <span id="infoRole"></span></p>
                 <p><strong>Email :</strong> <span id="infoEmail"></span></p>
                 <p><strong>Téléphone :</strong> <span id="infoPhone"></span></p>

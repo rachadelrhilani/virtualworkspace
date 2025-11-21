@@ -131,7 +131,7 @@ if (!regexTelephone.test(telephone.value.trim())) {
     role: role.value,
     email: email.value,
     phone: telephone.value,
-    photo: photo.value,
+    photo: photo.value || "../image/manicon.png",
     location: "",
     experiences: [],
     assigned: false
