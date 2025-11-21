@@ -105,9 +105,7 @@ const regexNom = /^[A-Za-z]+$/;
 const regexEmail = /^[\w.-]+@gmail\.com$/;  
 const regexTelephone = /^(05|06|07)\d{8}$/;  
 
-if(!(photo.value.trim())){
-  return alert("la photo  !");
-}
+
 
 if (!regexNom.test(nom.value.trim())) {
   return alert("Le nom est obligatoire et ne doit pas contenir de chiffres !");
