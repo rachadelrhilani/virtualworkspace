@@ -20,9 +20,9 @@ modalajouter.onclick = (e) => {
 /*Affiche le photo*/
 const photoInput = document.getElementById("photoInput");
 const img = document.getElementById("previewImg");
-
+ 
 photoInput.addEventListener("input", () => {
-  img.src = photoInput.value  || "..\image\manicon.png";
+  img.src = photoInput.value.trim() || "../image/manicon.png";
 });
 
 /*recuperer les experiences*/
