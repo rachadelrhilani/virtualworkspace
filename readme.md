@@ -78,7 +78,7 @@ Une section affiche le **nombre maximum d’employés** par zone (ex : conféren
 ## Technologies utilisées
 - **HTML5**
 - **CSS3 / TailwindCSS**
-- **JavaScript Vanilla**
+- **JavaScript**
 - **Grid / Flexbox**
 - **Modales animées (CSS animations)**
 
