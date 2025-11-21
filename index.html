@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 🔑 Meta Keywords -->
+   <meta name="keywords" content="virtual workspace, gestion du personnel, plan d'étage interactif, organisation employés, application web, zones de travail, interface interactive, WorkSphere, gestion des employés, workplace management, drag and drop, tableau de bord, espace de travail virtuel">
     <link rel="stylesheet" href="/css/style.css">
     <title>Virtual Workspace</title>
 </head>
@@ -53,90 +55,91 @@
         <div class="aspect-[16/10] w-[75%] mx-auto 
     border-4 shadow-2xl rounded-2xl mb-6 md:mb-0 relative bg-black">
 
-    <div class="relative grid w-full h-full 
+            <div class="relative grid w-full h-full 
         grid-cols-[38%_17%_22%_23%] 
         grid-rows-[34.5%_31%_32.5%]">
 
-        <img src="image/plan.jpg" class="absolute inset-0 w-full h-full opacity-80" alt="plan">
+                <img src="image/plan.jpg" class="absolute inset-0 w-full h-full opacity-80" alt="plan">
 
-        
-        <div id="zone-conference"
-            class="col-start-1 col-end-2 row-start-1 row-end-2 z-10 border border-2 border-yellow-400">
-            <div class="flex">
-                <p class="text-white mt-3 txt">Conférence</p>
 
-                <button id="btn-conference"
-                    class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 text-center rounded hover:bg-blue-700">
-                    +
-                </button>
+                <div id="zone-conference"
+                    class="col-start-1 col-end-2 row-start-1 row-end-2 z-10 border border-2 border-yellow-400">
+                    <div class="flex">
+                        <p class="text-white mt-3 txt">Conférence</p>
+
+                        <button id="btn-conference"
+                            class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 text-center rounded hover:bg-blue-700">
+                            +
+                        </button>
+                    </div>
+                </div>
+
+
+                <div id="zone-reception"
+                    class="col-start-1 zone-red col-end-2 row-start-2 row-end-4 bg-red-500/60 z-10 border border-2 border-yellow-400">
+                    <div class="flex">
+                        <p class="text-white mt-3 txt">Réception</p>
+                        <button id="btn-reception"
+                            class="mt-2 bg-blue-600 text-white text-xs flex justify-center px-2 py-1 rounded hover:bg-blue-700">
+                            +
+                        </button>
+                    </div>
+                </div>
+
+
+                <div id="zone-serveurs"
+                    class="col-start-3 col-end-4 zone-red row-start-1 row-end-2 bg-red-500/60 text-black z-10 border border-2 border-yellow-400">
+                    <div class="flex">
+                        <p class="text-white mt-3 txt">Serveurs</p>
+                        <button id="btn-serveurs"
+                            class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 rounded hover:bg-blue-700">
+                            +
+                        </button>
+                    </div>
+                </div>
+
+
+                <div id="zone-securite"
+                    class="col-start-4 col-end-6 zone-red row-start-1 row-end-2 bg-red-500/60 z-10 border border-2 border-yellow-400 overflow-y-auto">
+                    <div class="flex">
+                        <p class="text-white mt-3 txt">Sécurité</p>
+                        <button id="btn-securite"
+                            class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 rounded hover:bg-blue-700">
+                            +
+                        </button>
+                    </div>
+                </div>
+
+
+                <div id="zone-personnel"
+                    class="col-start-3 col-end-4 row-start-3 row-end-4 z-10 border border-2 border-yellow-400">
+                    <div class="flex">
+                        <p class="text-white mt-3 txt">Personnel</p>
+                        <button id="btn-personnel"
+                            class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 rounded hover:bg-blue-700">
+                            +
+                        </button>
+                    </div>
+                </div>
+
+
+                <div id="zone-archives"
+                    class="col-start-4 col-end-5 row-start-3 zone-red row-end-4 bg-red-500/60 z-10 border border-2 border-yellow-400">
+                    <div class="flex">
+                        <p class="text-white mt-3 txt">Archives</p>
+                        <button id="btn-archives"
+                            class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 rounded hover:bg-blue-700">
+                            +
+                        </button>
+                    </div>
+
+                </div>
             </div>
         </div>
 
-        
-        <div id="zone-reception"
-            class="col-start-1 zone-red col-end-2 row-start-2 row-end-4 bg-red-500/60 z-10 border border-2 border-yellow-400">
-            <div class="flex">
-                <p class="text-white mt-3 txt">Réception</p>
-                <button id="btn-reception"
-                    class="mt-2 bg-blue-600 text-white text-xs flex justify-center px-2 py-1 rounded hover:bg-blue-700">
-                    +
-                </button>
-            </div>
-        </div>
 
-       
-        <div id="zone-serveurs"
-            class="col-start-3 col-end-4 zone-red row-start-1 row-end-2 bg-red-500/60 text-black z-10 border border-2 border-yellow-400">
-            <div class="flex">
-                <p class="text-white mt-3 txt">Serveurs</p>
-                <button id="btn-serveurs"
-                    class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 rounded hover:bg-blue-700">
-                    +
-                </button>
-            </div>
-        </div>
-
-        
-        <div id="zone-securite"
-            class="col-start-4 col-end-6 zone-red row-start-1 row-end-2 bg-red-500/60 z-10 border border-2 border-yellow-400 overflow-y-auto">
-            <div class="flex">
-                <p class="text-white mt-3 txt">Sécurité</p>
-                <button id="btn-securite"
-                    class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 rounded hover:bg-blue-700">
-                    +
-                </button>
-            </div>
-        </div>
-
-        
-        <div id="zone-personnel"
-            class="col-start-3 col-end-4 row-start-3 row-end-4 z-10 border border-2 border-yellow-400">
-            <div class="flex">
-                <p class="text-white mt-3 txt">Personnel</p>
-                <button id="btn-personnel"
-                    class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 rounded hover:bg-blue-700">
-                    +
-                </button>
-            </div>
-        </div>
-
-        
-        <div id="zone-archives"
-            class="col-start-4 col-end-5 row-start-3 zone-red row-end-4 bg-red-500/60 z-10 border border-2 border-yellow-400">
-            <div class="flex">
-                <p class="text-white mt-3 txt">Archives</p>
-                <button id="btn-archives"
-                    class="mt-2 bg-blue-600 text-white text-xs px-2 py-1 rounded hover:bg-blue-700">
-                    +
-                </button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-        <div id="modal" class="fixed z-10 inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center p-4 anime-modal">
+        <div id="modal"
+            class="fixed z-10 inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center p-4 anime-modal">
 
             <div class="bg-white w-full max-w-2xl p-6 rounded-xl shadow-lg relative overflow-y-auto max-h-[90vh]">
 
@@ -173,7 +176,7 @@
                                 placeholder="email@example.com">
                         </div>
 
-                        
+
                         <div>
                             <label class="block font-medium">Téléphone</label>
                             <input type="text" id="tel" class="w-full border p-2 rounded" placeholder="+212...">
@@ -222,7 +225,8 @@
                 </div>
             </div>
         </div>
-        <div id="assignModal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-10 anime-modal">
+        <div id="assignModal"
+            class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-10 anime-modal">
             <div class="bg-white w-80 p-4 rounded shadow-lg overflow-y-auto max-h-[90vh]">
 
                 <h2 class="text-lg font-bold mb-3">Choisir un membre</h2>
@@ -236,7 +240,8 @@
         </div>
         <div id="infoModal" class="fixed z-10 inset-0 bg-black/50 flex items-center justify-center hidden anime-modal">
             <div class="bg-white rounded-lg p-4 w-80 text-center overflow-y-auto max-h-[90vh]">
-                <img id="infoPhoto" src="../image/manicon.png" class="w-24 h-24 rounded-full object-cover mx-auto mb-3" alt="infoPhoto">
+                <img id="infoPhoto" src="../image/manicon.png" class="w-24 h-24 rounded-full object-cover mx-auto mb-3"
+                    alt="infoPhoto">
                 <h2 id="infoName" class="text-lg font-bold mb-2">Info de worker</h2>
                 <p><strong>Rôle :</strong> <span id="infoRole"></span></p>
                 <p><strong>Email :</strong> <span id="infoEmail"></span></p>

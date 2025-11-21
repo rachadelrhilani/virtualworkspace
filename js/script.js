@@ -82,7 +82,7 @@ function affichestaff() {
             </div>
         `;
      div.onclick = ()=>{
-       Modalinfos(worker);
+       modalinfo(worker);
      }
     staffList.appendChild(div);
   });
@@ -199,7 +199,7 @@ const accessRules = {
   personnel: ["manager", "menage","technicien_it","agent_securite","receptionniste","autres"],
   archives: ["manager", "technicien_it", "agent_securite"]
 };
-const zoneCapacity = {
+const capacite = {
   serveurs: 2,
   securite: 2,
   personnel: 2,
@@ -238,7 +238,7 @@ function assignezone(worker, zone) {
   const zoneDiv = document.getElementById("zone-" + zone);
   const currentCount = zoneDiv.querySelectorAll(".workerCard").length;
 
-  if (currentCount >= zoneCapacity[zone]) {
+  if (currentCount >= capacite[zone]) {
     return alert(`La zone ${zone} est déjà pleine !`);
   }
   worker.assigned = true;
@@ -274,7 +274,7 @@ card.innerHTML = `
 
   zoneDiv.appendChild(card);
 
-  card.onclick = () => Modalinfos(worker);
+  card.onclick = () => modalinfo(worker);
 
   zonesred(zone);
 
@@ -303,13 +303,12 @@ function zonesred(zone) {
 
 
 /* un modal pour affiche les infomations de worker*/
-function Modalinfos(worker) {
+function modalinfo(worker) {
   document.getElementById("infoPhoto").src = worker.photo;
   document.getElementById("infoName").innerText = worker.name;
   document.getElementById("infoRole").innerText = worker.role;
   document.getElementById("infoEmail").innerText = worker.email;
   document.getElementById("infoPhone").innerText = worker.phone;
-
   document.getElementById("infoLocation").innerText = worker.location || "Non assigné";
   const expList = document.getElementById("infoExp");
   expList.innerHTML = "";

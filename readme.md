@@ -95,6 +95,7 @@ Une section affiche le **nombre maximum d’employés** par zone (ex : conféren
 │ └── plan.jpg
 │── README.md
 │── index.html
+```
 ---
 
 ## Validation
