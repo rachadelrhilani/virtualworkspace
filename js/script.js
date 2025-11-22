@@ -267,6 +267,7 @@ card.innerHTML = `
   remworker.onclick = (e) => {
     e.stopPropagation()
     worker.assigned = false;
+    worker.location = "Non assigné";
     affichestaff();
     card.remove();
     zonesred(zone);
