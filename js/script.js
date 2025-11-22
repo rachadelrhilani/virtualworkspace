@@ -20,7 +20,7 @@ modalajouter.onclick = (e) => {
 /*Affiche le photo*/
 const photoInput = document.getElementById("photoInput");
 const img = document.getElementById("previewImg");
- 
+
 photoInput.addEventListener("input", () => {
   img.src = photoInput.value.trim() || "../image/manicon.png";
 });
@@ -81,9 +81,9 @@ function affichestaff() {
                 <p class="text-sm text-gray-600">${worker.role}</p>
             </div>
         `;
-     div.onclick = ()=>{
-       modalinfo(worker);
-     }
+    div.onclick = () => {
+      modalinfo(worker);
+    }
     staffList.appendChild(div);
   });
 }
@@ -100,26 +100,29 @@ document.getElementById("Enregistrer").onclick = function (e) {
   const photo = document.getElementById("photoInput");
 
 
-  
-const regexNom = /^[A-Za-z]+$/;  
-const regexEmail = /^[\w.-]+@gmail\.com$/;  
-const regexTelephone = /^(05|06|07)\d{8}$/;  
+
+  const regexNom = /^[A-Za-z]+$/;
+  const regexEmail = /^[\w.-]+@gmail\.com$/;
+  const regexTelephone = /^(05|06|07)\d{8}$/;
 
 
 
-if (!regexNom.test(nom.value.trim())) {
-  return alert("Le nom est obligatoire et ne doit pas contenir de chiffres !");
-}
+  if (!regexNom.test(nom.value.trim())) {
+    return alert("Le nom est obligatoire et ne doit pas contenir de chiffres !");
+  }
+
+  if (!role.value) {
+    return alert("le role est obligatoire !");
+  }
+
+  if (!regexEmail.test(email.value.trim())) {
+    return alert("Email invalide ! (ex: exemple@gmail.com)");
+  }
 
 
-if (!regexEmail.test(email.value.trim())) {
-  return alert("Email invalide ! (ex: exemple@gmail.com)");
-}
-
-
-if (!regexTelephone.test(telephone.value.trim())) {
-  return alert("Téléphone invalide ! (ex: 06XXXXXXXX)");
-}
+  if (!regexTelephone.test(telephone.value.trim())) {
+    return alert("Téléphone invalide ! (ex: 06XXXXXXXX)");
+  }
 
 
 
@@ -138,25 +141,25 @@ if (!regexTelephone.test(telephone.value.trim())) {
 
   const expItems = document.querySelectorAll(".expItem");
 
-  
+
   for (let item of expItems) {
     const roleExp = item.querySelector(".roleExp").value.trim();
     const fromExp = item.querySelector(".fromExp").value;
     const toExp = item.querySelector(".toExp").value;
-    const roleregex = /^[A-Za-z'-]+$/;  
+    const roleregex = /^[A-Za-z'-]+$/;
     if (!roleExp || !fromExp || !toExp) {
       alert("Tous les champs d'expérience doivent etre remplis !");
-      return; 
+      return;
     }
 
-    if(!roleregex.test(roleExp)){
-        alert("le role doit contient seulement des lettres");
-      return; 
+    if (!roleregex.test(roleExp)) {
+      alert("le role doit contient seulement des lettres");
+      return;
     }
 
     if (fromExp > toExp) {
       alert("La date début ne peut pas être supérieure à la date fin !");
-      return; 
+      return;
     }
 
     newWorker.experiences.push({
@@ -176,6 +179,14 @@ if (!regexTelephone.test(telephone.value.trim())) {
   email.value = "";
   telephone.value = "";
   photo.value = "";
+  role.value = "";
+  expItems.forEach(item => {
+    const btn = item.querySelector(".removeExp");
+    if (btn) {
+      btn.remove();
+    }
+  });
+
   modalajouter.classList.add("hidden");
 };
 /* ajoute dans une zone */
@@ -196,7 +207,7 @@ const accessRules = {
   reception: ["receptionniste", "manager", "menage"],
   serveurs: ["technicien_it", "manager", "menage"],
   securite: ["agent_securite", "manager", "menage"],
-  personnel: ["manager", "menage","technicien_it","agent_securite","receptionniste","autres"],
+  personnel: ["manager", "menage", "technicien_it", "agent_securite", "receptionniste", "autres"],
   archives: ["manager", "technicien_it", "agent_securite"]
 };
 const capacite = {
@@ -245,10 +256,10 @@ function assignezone(worker, zone) {
   worker.location = zone;
   affichestaff();
   const card = document.createElement("div");
-card.className =
-  "workerCard flex items-center gap-2 bg-white shadow rounded px-2 py-1 mt-2 w-fit max-w-full cursor-pointer";
+  card.className =
+    "workerCard flex items-center gap-2 bg-white shadow rounded px-2 py-1 mt-2 w-fit max-w-full cursor-pointer";
 
-card.innerHTML = `
+  card.innerHTML = `
   <img src="${worker.photo}" class="card-photo">
   
 
